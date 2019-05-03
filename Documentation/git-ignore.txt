@@ -1,0 +1,64 @@
+git-ignore(1)
+=============
+
+NAME
+----
+git-ignore - Manipulate ignored files and directories
+
+
+SYNOPSIS
+--------
+[verse]
+'git ignore' [--share|--local|--system] [--track|--untrack] <pattern>...
+'git ignore' [--share|--local|--system] -e | --edit
+
+DESCRIPTION
+-----------
+This command is used to add and remove ignored files and directories from the
+various ignore files, providing a more convenient mechanism for manipulating
+ignore files.
+
+todo -f|--file to specify the ignore file
+todo -l|--list to show all ignored files and directories
+todo --is-ignored to check if a pattern is ignored
+todo track/untrack is fairly ambiguous, ideally this would be renamed
+
+OPTIONS
+-------
+
+--share::
+	Write to the project's tracked `.gitignore` file. This is the default behavior.
+	The ignore file will be created if non-existent.
+
+--local::
+	Write to the `$GIT_DIR/info/exclude` ignore file, used to ignore auxiliary
+	files that live inside the repository but are specific to one user's
+	workflow.
+
+--system::
+	Write to the system-wide ignore file. This file is specified by
+	`core.excludesFile` in the user's `~/.gitconfig`. By default, this config
+	property has the value $XDG_CONFIG_HOME/git/gitignore. If $XDG_CONFIG_HOME
+	is either not set or empty, $HOME/.config/git/ignore is used instead. The
+	ignore file will be created if non-existent.
+
+--track::
+	Add pattern to the ignore file. This is the default behavior.
+
+--untrack::
+	Remove patterns from the ignore file.
+
+-e::
+--edit::
+	Opens an editor to modify the specified ignore file.
+
+
+include::ignore-pattern.txt[]
+
+SEE ALSO
+--------
+linkgit:gitignore[1]
+
+GIT
+---
+Part of the linkgit:git[1] suite
